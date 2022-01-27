@@ -3,7 +3,7 @@
 
 
 # exclude everything in folder .plot
-.plot/*
+.plot/
 # except the folder itself
 !.plot/.gitkeep
 !.plot/logs/.gitkeep
