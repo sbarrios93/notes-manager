@@ -8,6 +8,8 @@
 !.plot/.gitkeep
 !.plot/logs/.gitkeep
 
+.plots/logs/log.txt
+
 
 ##################################################
 # Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,jupyternotebooks
@@ -201,4 +203,3 @@ cython_debug/
 # Support for Project snippet scope
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,jupyternotebooks
-
