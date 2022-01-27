@@ -1,0 +1,8 @@
+{
+	"python.pythonPath": "/Users/seba/.pyenv/shims/python",
+	"outputFilePath": "${fileDirname}/output/${fileBasenameNoExtension}.pdf",
+	"triggerTaskOnSave.tasks": {
+		"build-eisvogel-single": ["content/**/*.md"]
+	},
+	"cSpell.words": ["Fira", "mainfont", "textbf"]
+}

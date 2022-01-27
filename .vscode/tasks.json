@@ -1,0 +1,83 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build-tufte-single",
+			"type": "shell",
+			"command": "${workspaceFolder}/scripts/processor.py",
+			"args": [
+				"${file}",
+				"${fileDirname}",
+				"|",
+				"pandoc",
+				"--standalone",
+				"--from=markdown+rebase_relative_paths+tex_math_single_backslash+tex_math_dollars",
+				"--to=pdf",
+				"--output=${fileDirname}/output/${fileBasenameNoExtension}.pdf",
+				"--template=${workspaceFolder}/templates/tufte.tex",
+				"--metadata=documentclass:tufte-handout",
+				"--resource-path=${fileDirname}"
+			]
+		},
+		{
+			"label": "build-eisvogel-single",
+			"type": "shell",
+			"command": "${workspaceFolder}/scripts/processor.py",
+			"args": [
+				"${file}",
+				"${fileDirname}",
+				"|",
+				"pandoc",
+				"--filter=pandoc-plot",
+				"--standalone",
+				"--from=markdown+rebase_relative_paths+tex_math_single_backslash+tex_math_dollars",
+				"--to=pdf",
+				"--output=${fileDirname}/output/${fileBasenameNoExtension}.pdf",
+				"--template=${workspaceFolder}/templates/eisvogel.tex",
+				"--resource-path=${fileDirname}"
+			],
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+		{
+			"label": "build-eisvogel-single-tex",
+			"type": "shell",
+			"command": "${workspaceFolder}/scripts/processor.py",
+			"args": [
+				"${file}",
+				"${fileDirname}",
+				"|",
+				"pandoc",
+				"--filter=pandoc-plot",
+				"--standalone",
+				"--from=markdown+rebase_relative_paths+tex_math_single_backslash+tex_math_dollars",
+				"--to=latex",
+				"--output=${fileDirname}/output/${fileBasenameNoExtension}.tex",
+				"--template=${workspaceFolder}/templates/eisvogel.tex",
+				"--resource-path=${fileDirname}"
+			],
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+
+		{
+			"label": "Zathura",
+			"type": "shell",
+			"command": "zathura",
+			"args": ["${fileDirname}/output/${fileBasenameNoExtension}.pdf"],
+			"problemMatcher": []
+		}
+	]
+}

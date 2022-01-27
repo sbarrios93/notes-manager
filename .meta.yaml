@@ -1,0 +1,24 @@
+Computer Vision:
+  alias: CV
+  parent: MBA
+  path: /Users/seba/notes/content/mba/computer-vision
+  short_name: Computer Vision
+  type: course
+Machine Learning:
+  alias: ML
+  parent: MBA
+  path: /Users/seba/notes/content/mba/machine-learning
+  short_name: Machine Learning
+  type: course
+Ops Management:
+  alias: OM
+  parent: MBA
+  path: /Users/seba/notes/content/mba/ops-management
+  short_name: Ops Management
+  type: course
+Python:
+  alias: py
+  parent: Programming Notes
+  path: /Users/seba/notes/content/programming-notes/python
+  short_name: Python
+  type: simple notes

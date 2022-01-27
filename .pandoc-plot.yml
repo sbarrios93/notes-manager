@@ -1,0 +1,5 @@
+directory: ".plots/"
+format: "PDF"
+logging:
+  verbosity: debug
+  filepath: .plots/logs/log.txt

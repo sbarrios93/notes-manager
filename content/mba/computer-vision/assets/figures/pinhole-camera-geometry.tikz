@@ -1,0 +1,75 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (1) at (-4, 5.25) {};
+		\node [style=none] (2) at (-4, -0.75) {};
+		\node [style=none] (3) at (-8, -4.75) {};
+		\node [style=none] (4) at (-8, 1.25) {};
+		\node [style=none] (5) at (7, 5.25) {};
+		\node [style=none] (6) at (7, -0.75) {};
+		\node [style=none] (7) at (3, -4.75) {};
+		\node [style=none] (8) at (3, 1.25) {};
+		\node [style=none] (9) at (-9, 0) {};
+		\node [style=none] (10) at (9, 0) {};
+		\node [style=none] (11) at (5, 0) {};
+		\node [style=none] (12) at (-6, 0) {};
+		\node [style=none] (13) at (-3, 0) {};
+		\node [style=none] (14) at (0, 2) {};
+		\node [style=X dot] (15) at (0, 0) {};
+		\node [style=none] (16) at (2, 0) {};
+		\node [style=none] (17) at (-1.5, -1.5) {};
+		\node [style=none] (18) at (0, -2.75) {};
+		\node [style=none] (19) at (3, -2.75) {};
+		\node [style=none] (20) at (0, -4) {};
+		\node [style=none] (21) at (5, 3.25) {};
+		\node [style=none] (22) at (3, -2) {};
+		\node [style=none] (23) at (-8.5, -5.5) {$H-1$};
+		\node [style=none] (24) at (-9, -2) {$v$};
+		\node [style=none] (25) at (-8.75, 1.25) {$0$};
+		\node [style=none] (26) at (-8.25, 2) {$0$};
+		\node [style=none] (27) at (-6.5, 3.5) {$u$};
+		\node [style=none] (28) at (-4, 6) {$W-1$};
+		\node [style=none] (29) at (-4, 1) {};
+		\node [style=none] (30) at (-0.25, 1) {};
+		\node [style=none] (31) at (-2.25, 1.5) {$f$};
+		\node [style=none] (32) at (1.5, -3.25) {$f$};
+		\node [style=none] (33) at (4.5, -1.25) {$u$};
+		\node [style=none] (34) at (5.5, 1.75) {$v$};
+		\node [style=none] (35) at (5.25, -0.5) {$\mathbf{p}$};
+		\node [style=none] (36) at (0.5, 0.5) {$\mathbf{C}$};
+		\node [style=none] (37) at (0, 2.5) {$Y$};
+		\node [style=none] (38) at (-2, -2) {$X$};
+		\node [style=none] (39) at (2.25, -0.5) {$Z$};
+		\node [style=none] (40) at (8, 2.75) {{\scriptsize Projection plane}};
+		\node [style=none] (41) at (-5, -2.75) {{\scriptsize Image plane}};
+		\node [style=none] (42) at (9.75, -0.5) {{\scriptsize Optical axis}};
+		\node [style=vertex set] (43) at (-6.5, -1.25) {};
+		\node [style=vertex set] (44) at (10, 2) {};
+		\node [style=none] (45) at (13.75, 2) {$( X, Y, Z)$: scene point};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=boldedge, in=180, out=0] (9.center) to (10.center);
+		\draw [style=new edge style 0] (1.center)
+			 to (2.center)
+			 to (3.center)
+			 to (4.center)
+			 to [in=225, out=45] cycle;
+		\draw [style=new edge style 0] (5.center)
+			 to (6.center)
+			 to (7.center)
+			 to (8.center)
+			 to cycle;
+		\draw [style=boldedge] (11.center) to (10.center);
+		\draw [style=boldedge, in=180, out=0] (12.center) to (13.center);
+		\draw [style=new edge style 1] (15) to (17.center);
+		\draw [style=new edge style 1] (15) to (16.center);
+		\draw [style=new edge style 1] (15) to (14.center);
+		\draw [style=bidir edge, in=360, out=180] (19.center) to (18.center);
+		\draw [style=blue dash edge] (15) to (20.center);
+		\draw [style=new edge style 1] (11.center) to (21.center);
+		\draw [style=new edge style 1] (11.center) to (22.center);
+		\draw [style=new edge style 1] (4.center) to (1.center);
+		\draw [style=new edge style 1] (4.center) to (3.center);
+		\draw [style=bidir edge] (29.center) to (30.center);
+		\draw [style=green dash edge] (44) to (43);
+	\end{pgfonlayer}
+\end{tikzpicture}

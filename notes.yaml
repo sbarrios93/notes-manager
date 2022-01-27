@@ -1,0 +1,24 @@
+notes-dir: content
+
+Area:
+  MBA:
+    type: course
+    topic:
+      - name: Introduction to Computer Vision
+        short: Computer Vision
+        alias: CV
+      - name: Machine Learning
+        short: Machine Learning
+        alias: ML
+      - name: Operations Management
+        short: Ops Management
+        alias: OM
+  Programming Notes:
+    type: simple notes
+    topic:
+      - name: Python
+        short: Python
+        alias: py
+
+Options:
+  asset-tree: { assets: [images, drawio, inkscape-figures] }
