@@ -1,5 +1,3 @@
-notes-dir: content
-
 Area:
   MBA:
     type: course
@@ -22,3 +20,7 @@ Area:
 
 Options:
   asset-tree: { assets: [images, drawio, inkscape-figures] }
+
+Paths:
+  notes-dir: content
+  hidden-file: .meta.yaml

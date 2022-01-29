@@ -9,14 +9,14 @@ date: 2022-01-12
 
 ![Representation of pinhole camera](assets/images/reverse-person-pinhole-camera.png){width=40%}
 
--   Simplest camera: put sensor in front of object, covered so that only a small hole lets light through.
+- Simplest camera: put sensor in front of object, covered so that only a small hole lets light through.
 
 # Pinhole camera geometry
 
 ![Camera geometry](assets/figures/pinhole-camera-geometry.pdf)
 
--   Image plane at $Z=-f$, "virtual" projection plane at $Z=f$
--   Center of projection $\textbf{p}$ at $(0,0,f)$, with $u=0, v=0$
+- Image plane at $Z=-f$, "virtual" projection plane at $Z=f$
+- Center of projection $\textbf{p}$ at $(0,0,f)$, with $u=0, v=0$
 
 # Perspective equations
 
@@ -115,18 +115,18 @@ $$
 1. To homogeneous coordinates: **just add 1**
 2. From homogeneous coordinates: divide by the last coordinate
 
-    $$
-    \begin{pmatrix}
-    x \\
-    y \\
-    w
-    \end{pmatrix} \Rightarrow \left( \frac{x}{w}, \frac{y}{w}  \right) \text{ and } \quad \begin{pmatrix}
-    X \\
-    Y \\
-    Z \\
-    W
-    \end{pmatrix} \Rightarrow \left( \frac{X}{W}, \frac{Y}{W}, \frac{Z}{W} \right)
-    $$
+   $$
+   \begin{pmatrix}
+   x \\
+   y \\
+   w
+   \end{pmatrix} \Rightarrow \left( \frac{x}{w}, \frac{y}{w}  \right) \text{ and } \quad \begin{pmatrix}
+   X \\
+   Y \\
+   Z \\
+   W
+   \end{pmatrix} \Rightarrow \left( \frac{X}{W}, \frac{Y}{W}, \frac{Z}{W} \right)
+   $$
 
 > Perspective projection collapses an entire ray $\mathbf{C} + \lambda \cdot \left( X, Y, Z \right)$ to a point $\left( f \frac{X}{Z}, f \frac{Y}{Z}  \right)$
 
@@ -149,11 +149,98 @@ Z
 \end{pmatrix} \Rightarrow \left( f \frac{X}{Z}, f \frac{Y}{Z} \right)
 $$
 
-In practice, need to handle different coordinate systems and the fact that pixrl coordinates are different from projection plane coordinates
+I practice, need to handle different coordinate systems and the fact that pixrl coordinates are different from projection plane coordinates
+
+# Pixel coordinates
 
 ![Pixel Coordinates](assets/figures/pixel-coordinates.pdf){width=50%}
 
--   Principal point $p = p_x, p_y$: point in the image where the optical axis crosses the projection (image) plane
--   Normalized coordinate system: origin at $\mathbf{p}$
--   Image coordinates: origin is **the corner**
--   Want the principal point to **map to $\left( p_x, p_y \right)$ not $\left( 0,0 \right)$**
+- Principal point $p = p_x, p_y$: point in the image where the optical axis crosses the projection (image) plane
+- Normalized coordinate system: origin at $\mathbf{p}$
+- Image coordinates: origin is **the corner**
+- Want the principal point to **map to $\left( p_x, p_y \right)$ not $\left( 0,0 \right)$**
+
+Then: $\left( X, Y, Z \right) \to \left(  f \frac{X}{Z} + p_x , f \frac{Y}{Z} + p_y \right)$
+
+$$
+\begin{aligned}
+\begin{pmatrix}
+X \\
+Y \\
+Z \\
+1
+\end{pmatrix} \to \begin{pmatrix}
+fX + Zp_x \\
+fY + Zp_y \\
+Z
+\end{pmatrix} &= \begin{bmatrix}
+f & & p_x & 0 \\
+& f & p_y & 0 \\
+& & 1 & 0
+\end{bmatrix} \begin{pmatrix}
+X \\
+Y \\
+Z \\
+1
+\end{pmatrix} \\
+&= \underbrace{\begin{bmatrix}
+f & & p_x \\
+& f & p_y \\
+& & 1
+\end{bmatrix}}_{\text{calibration mat} \ \mathbf{K}} \underbrace{\begin{bmatrix}
+1 &  &  & 0 \\
+ & 1 &  & 0 \\
+ &  & 1 & 0
+\end{bmatrix}}_{\text{projection mat} \
+[\mathbf{I}  \mid \mathbf{0}]} \begin{pmatrix}
+X \\
+Y \\
+Z \\
+1
+\end{pmatrix}
+\end{aligned}
+$$
+
+## Pixel coordinates: units
+
+After mapping, we have $\left( x,y \right) = \mathbf{K} [\mathbf{I} \mid 0] \left( X,Y,Z \right)$ in the image coordinates, in the **world** units.
+
+Pixel Size
+: Represented by $\frac{1}{m_x} \times \frac{1}{m_y}$ where the density of the image sensor is $\frac{ m_x }{\text{meters}}$ pixels horizontally and $\frac{ m_y }{\text{meters}}$ pixels vertically (in meters).
+
+To convert to pixel coordinates, multiply by pixel magnification factor:
+
+$$
+\mathbf{K} = \begin{bmatrix}
+m_x &  &  \\
+ & m_y &  \\
+ &  & 1
+\end{bmatrix} \begin{bmatrix}
+f &  & p_x \\
+ & f & p_y \\
+ &  & 1
+\end{bmatrix} = \begin{bmatrix}
+\alpha_x & & \beta_x \\
+ & \alpha_y & \beta_y \\
+ &  & 1
+\end{bmatrix}
+$$
+
+> # Conclusion
+>
+> We know how to map a scene point $X, Y, Z$ to pixel coordinates:
+> $\mathbf{K}[\mathbf{I}|\mathbf{0}]\begin{pmatrix}
+X \\
+Y \\
+Z \\
+1
+\end{pmatrix}$
+
+# Orthographic projection
+
+Special case
+: distance from $\mathbf{C}$ to image plane is infinite.
+
+![Weak Projection](assets/figures/weak-projection.pdf)
+
+In the weak perspective model, points are ﬁrst projected to the reference plane using orthogonal projection and then projected to the image plane using a projective transformation.

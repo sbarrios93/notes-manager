@@ -27,7 +27,7 @@ def get_asset_relative_paths(asset_tree):
 def build_structure(root_path, config_file_path, path_hidden_file_path):
     cfg = utils.load_config(config_file_path)
 
-    notes_dir = cfg["notes-dir"]
+    notes_dir = cfg["Paths"]["notes-dir"]
     make_dir(root_path, notes_dir)
 
     asset_tree = cfg["Options"]["asset-tree"]

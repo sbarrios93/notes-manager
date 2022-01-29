@@ -1,0 +1,32 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-11, 4) {};
+		\node [style=none] (1) at (-11, -4) {};
+		\node [style=none] (2) at (9, -4) {};
+		\node [style=none] (3) at (9, 4) {};
+		\node [style=X dot] (4) at (8, 3) {};
+		\node [style=small black dot] (5) at (9, 2) {};
+		\node [style=X dot] (6) at (9.75, -1) {};
+		\node [style=cnot targ] (7) at (-4.25, 1) {};
+		\node [style=small black dot] (8) at (9, -1) {};
+		\node [style=small black dot] (9) at (9, 3) {};
+		\node [style=small black dot] (10) at (-11, 0) {};
+		\node [style=small black dot] (11) at (-11, 0.5) {};
+		\node [style=small black dot] (12) at (-11, 2) {};
+		\node [style=none] (13) at (7.25, 3) {$p_1$};
+		\node [style=none] (14) at (10.75, -1) {$q_1$};
+		\node [style=none] (15) at (9.75, 2) {$r_1$};
+		\node [style=none] (16) at (8.5, -1.5) {$q_2$};
+		\node [style=none] (17) at (9.75, 3) {$p_2$};
+		\node [style=none] (18) at (9, 4.5) {Projection Plane};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (3.center) to (2.center);
+		\draw (0.center) to (1.center);
+		\draw [style=pointer edge] (6) to (8);
+		\draw [style=pointer edge] (4) to (9);
+		\draw [style=new edge style 2] (9) to (10);
+		\draw [style=new edge style 2] (5) to (11);
+		\draw [style=new edge style 2] (8) to (12);
+	\end{pgfonlayer}
+\end{tikzpicture}

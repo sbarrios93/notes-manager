@@ -56,7 +56,7 @@ $$
 \end{aligned}
 $$
 
--   x: point in image coordinates (homogeneous)
--   $[\mathbf{I}|0]$: $3 \times 4$ projection matrix
--   K: $3 \times 3$ 2D transformation (calibration matrix)
--   $[\mathbf{R} \mid \mathbf{t}]: 3 \times 4$ camera pose (extrinsic) matrix
+- x: point in image coordinates (homogeneous)
+- $[\mathbf{I}|0]$: $3 \times 4$ projection matrix
+- K: $3 \times 3$ 2D transformation (calibration matrix)
+- $[\mathbf{R} \mid \mathbf{t}]: 3 \times 4$ camera pose (extrinsic) matrix

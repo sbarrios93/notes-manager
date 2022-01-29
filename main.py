@@ -1,34 +1,18 @@
-from src import build, utils
-from src.structs import Area
+from distutils.command.config import config
 from pathlib import Path
-import yaml
-from enum import Enum
-
-
 import click
+import yaml
 
 
-ROOT = Path(__file__).parent.absolute()
-# Read structure and config info from this file
-CONFIG_FILE = "notes.yaml"
-
-# Structure file notes.yaml should be at the root level of the folder. [same level as main.py]
-CONFIG_FILE_PATH = ROOT / CONFIG_FILE
-assert (
-    CONFIG_FILE_PATH.exists()
-), f"Config file {CONFIG_FILE} was not found at expected location. Should be at root level"
-
-PATH_HIDDEN_FILE = ".meta.yaml"
-PATH_HIDDEN_FILE_PATH = ROOT / PATH_HIDDEN_FILE
+CONFIG_FILE_NAME = "notes.yaml"
 
 
-def get_topics():
-    cfg = utils.load_config(PATH_HIDDEN_FILE)
-    return {k: v for k, v in cfg.items()}
+def load_config(config_file_name=CONFIG_FILE_NAME):
+    assert Path(
+        config_file_name
+    ).exists(), f"Config file {config_file_name} was not found at expected location. Should be at root level"
 
-
-def get_aliases():
-    return [topic["alias"] for topic in get_topics().values()]
+    return yaml.load(open(config_file_name), Loader=yaml.SafeLoader)
 
 
 @click.command()
@@ -38,11 +22,22 @@ def get_aliases():
     type=click.Choice(get_aliases(), case_sensitive=False),
     prompt="What topic do you want to create?",
 )
-def make_note(
+def run(
     topic,
 ):
     print(f"Making note for {topic}")
 
 
 if __name__ == "__main__":
-    make_note()  # Replace typer.run() with app()
+
+    # config has all the paths and notes structures
+    # this file MUST be at the root level folder
+    config = load_config()
+
+    # assign paths
+    config_file_path = Path(CONFIG_FILE_NAME).resolve()
+    root_path = config_file_path.parent
+    meta_file_path = config["Paths"]["hidden-file"]
+    notes_path = config["Paths"]["notes-dir"]
+
+    run()
